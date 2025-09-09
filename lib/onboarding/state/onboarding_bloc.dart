@@ -74,14 +74,12 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         return;
     }
 
-    if (nextStep != null) {
-      emit(state.copyWith(
-        currentStep: nextStep,
-        status: OnboardingStatus.initial,
-        errorMessage: null,
-      ));
+    emit(state.copyWith(
+      currentStep: nextStep,
+      status: OnboardingStatus.initial,
+      errorMessage: null,
+    ));
     }
-  }
 
   void _onPreviousStep(PreviousStepEvent event, Emitter<OnboardingState> emit) {
     final currentStep = state.currentStep;
@@ -119,14 +117,12 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         return;
     }
 
-    if (previousStep != null) {
-      emit(state.copyWith(
-        currentStep: previousStep,
-        status: OnboardingStatus.initial,
-        errorMessage: null,
-      ));
+    emit(state.copyWith(
+      currentStep: previousStep,
+      status: OnboardingStatus.initial,
+      errorMessage: null,
+    ));
     }
-  }
 
   void _onGoToStep(GoToStepEvent event, Emitter<OnboardingState> emit) {
     final steps = OnboardingStep.values;
