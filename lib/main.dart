@@ -12,8 +12,6 @@ import 'package:ui_design/onboarding/screens/verify_bvn.dart';
 import 'package:ui_design/onboarding/screens/welcome_screen.dart';
 import 'core/constants/app_colors.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -85,23 +83,23 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/splash',
+      initialRoute: '/welcome',
       routes: {
         '/splash': (context) => const SplashScreen(),
         '/welcome': (context) => const WelcomeScreen(),
         '/saving-goals': (context) => const SavingGoalsScreen(),
         //'/security-assurance': (context) => const SecurityAssuranceScreen(),
         '/referral-code': (context) => const ReferralCodeScreen(),
-        '/otp-verification': (context) => const OtpVerificationScreen(
-              phoneNumber: '+2348123456652', // You can pass this dynamically
-            ),
+        '/otp-verification': (context) => const OTPVerificationScreen(),
         '/verification-success': (context) => const VerificationSuccessScreen(),
         //'/complete-signup': (context) => const CompleteSignupScreen(),
         '/verify-bvn': (context) => const VerifyBvnScreen(),
         '/card-details': (context) => const CardDetailsScreen(),
         '/loading': (context) => const LoadingScreen(),
-        '/registration-successful': (context) => const RegistrationSuccessfulScreen(),
-        '/main-app': (context) => const MainAppScreen(), // This is your main app after onboarding
+        '/registration-successful': (context) =>
+            const RegistrationSuccessfulScreen(),
+        '/main-app': (context) =>
+            const MainAppScreen(), // This is your main app after onboarding
       },
       onGenerateRoute: (settings) {
         // Handle dynamic routes if needed
@@ -109,9 +107,7 @@ class MyApp extends StatelessWidget {
           case '/otp-verification':
             final args = settings.arguments as Map<String, dynamic>?;
             return MaterialPageRoute(
-              builder: (context) => OtpVerificationScreen(
-                phoneNumber: args?['phoneNumber'] ?? '+2348123456652',
-              ),
+              builder: (context) => OTPVerificationScreen(),
             );
           default:
             return null;
@@ -119,14 +115,11 @@ class MyApp extends StatelessWidget {
       },
       onUnknownRoute: (settings) {
         // Handle unknown routes
-        return MaterialPageRoute(
-          builder: (context) => const SplashScreen(),
-        );
+        return MaterialPageRoute(builder: (context) => const WelcomeScreen());
       },
     );
   }
 }
-
 
 class MainAppScreen extends StatelessWidget {
   const MainAppScreen({super.key});
@@ -143,26 +136,16 @@ class MainAppScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.check_circle,
-              size: 80,
-              color: Colors.green,
-            ),
+            Icon(Icons.check_circle, size: 80, color: Colors.green),
             SizedBox(height: 20),
             Text(
               'Welcome to CedarOaks!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
               'Your onboarding is complete.',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
           ],
         ),
